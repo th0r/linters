@@ -13,16 +13,17 @@ this service puts the results back on the queue for [Hound] to process.
 This service uses the following linters:
 
   * [coffeelint](http://www.coffeelint.org) for CoffeeScript
+  * [credo](https://github.com/rrrene/credo) for Elixir
   * [eslint](http://eslint.org) for JavaScript and JSX
   * [haml-lint](https://github.com/brigade/haml-lint) for HAML
   * [jshint](http://jshint.com) for JavaScript
+  * [reek](https://github.com/troessner/reek) for Ruby code smells
   * [rubocop](https://github.com/bbatsov/rubocop) for Ruby
   * [sass-lint](https://github.com/sasstools/sass-lint) for SASS
   * [scss-lint](https://github.com/brigade/scss-lint) for SCSS
   * [slim-lint](https://github.com/sds/slim-lint) for Slim
   * [stylelint](https://github.com/stylelint/stylelint) for SCSS/CSS
-  * [credo](https://github.com/rrrene/credo) for Elixir
-  * [reek](https://github.com/troessner/reek) for Ruby code smells
+  * [tslint](https://github.com/palantir/tslint) for TypeScript
 
 To contribute to the Linters codebase, see the [CONTRIBUTING.md] file.
 
