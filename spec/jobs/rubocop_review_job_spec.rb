@@ -7,6 +7,7 @@ RSpec.describe RubocopReviewJob do
     it "reports violations" do
       content = <<~EOS
         # frozen_string_literal: true
+
         def foo(bar:, baz:)
           bar
         end
@@ -17,7 +18,7 @@ RSpec.describe RubocopReviewJob do
         filename: "foo/test.rb",
         violations: [
           {
-            line: 2,
+            line: 3,
             message: "Unused method argument - baz.",
           },
         ],
@@ -52,6 +53,7 @@ RSpec.describe RubocopReviewJob do
         YAML
         content = <<~EOS
           # frozen_string_literal: true
+
           def foo(bar:, baz:)
             bar
           end
@@ -63,7 +65,7 @@ RSpec.describe RubocopReviewJob do
           filename: "foo/test.rb",
           violations: [
             {
-              line: 2,
+              line: 3,
               message: "Unused method argument - baz.",
             },
           ],

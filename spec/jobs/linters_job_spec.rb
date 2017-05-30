@@ -13,7 +13,7 @@ RSpec.describe LintersJob do
         violations: [
           {
             line: 1,
-            message: "Missing frozen string literal comment.",
+            message: "Missing magic comment # frozen_string_literal: true.",
           },
         ],
       )
