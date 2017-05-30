@@ -25,10 +25,11 @@ GEM
       sexp_processor (~> 4.4)
     haml (4.0.7)
       tilt
-    haml_lint (0.19.0)
-      haml (~> 4.0)
+    haml_lint (0.25.1)
+      haml (>= 4.0, < 5.1)
+      rainbow
       rake (>= 10, < 13)
-      rubocop (>= 0.36.0)
+      rubocop (>= 0.47.0)
       sysexits (~> 1.1)
     ice_nine (0.11.2)
     mono_logger (1.1.0)
@@ -106,7 +107,7 @@ GEM
     sysexits (1.2.0)
     temple (0.7.7)
     thread_safe (0.3.5)
-    tilt (2.0.5)
+    tilt (2.0.7)
     unicode-display_width (1.2.1)
     vegas (0.1.11)
       rack (>= 1.0.0)
