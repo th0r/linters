@@ -72,6 +72,34 @@ RSpec.describe RubocopReviewJob do
         )
       end
     end
+
+    context "and rubocop-rspec plugin is used" do
+      it "reports violations" do
+        config = <<~YAML
+          require:
+            - rubocop-rspec
+        YAML
+        content = <<~EOS
+          # frozen_string_literal: true
+
+          def foo(bar:, baz:)
+            bar
+          end
+        EOS
+
+        expect_violations_in_file(
+          config: config,
+          content: content,
+          filename: "foo/test.rb",
+          violations: [
+            {
+              line: 3,
+              message: "Unused method argument - baz.",
+            },
+          ],
+        )
+      end
+    end
   end
 
   context "when syntax is invalid" do
