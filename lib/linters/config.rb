@@ -32,11 +32,11 @@ module Linters
     end
 
     def custom_config
-      YAML.safe_load(content, [Regexp]) || {}
+      YAML.safe_load(content, [Regexp, Symbol]) || {}
     end
 
     def default_config
-      YAML.safe_load(default_content, [Regexp])
+      YAML.safe_load(default_content, [Regexp, Symbol])
     end
 
     def default_content
