@@ -33,7 +33,7 @@ module Linters
       violations = linter_options.tokenizer.parse(result.output)
 
       if violations.empty? && result.error?
-        complete_file_review([], error: result.output.lines.uniq.join)
+        complete_file_review([], error: sanitize_error_output(result.output))
       else
         complete_file_review(violations)
       end
@@ -42,6 +42,11 @@ module Linters
     private
 
     attr_reader :attributes, :linter_options
+
+    def sanitize_error_output(output)
+      temp_path_pattern = %r{/tmp/.+?/|/private/var/folders/.+/.+/T/.+?/}
+      output.lines.uniq.join.gsub(temp_path_pattern, "")
+    end
 
     def source_file
       SourceFile.new(filename, attributes.fetch("content"))

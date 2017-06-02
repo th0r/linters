@@ -7,7 +7,7 @@ describe Linters::Runner do
     context "when linter encounters an error" do
       it "enqueues a job with an error" do
         config = <<~EOS
-          Style/StringLiterals:
+          Style/AlignHash:
           Enabled: true
         EOS
         attributes = {
@@ -34,7 +34,8 @@ describe Linters::Runner do
           patch: attributes["patch"],
           pull_request_number: attributes["pull_request_number"],
           violations: [],
-          error: a_string_including("Warning: unrecognized cop Enabled found"),
+          error:
+            start_with(".rubocop.yml: Style/AlignHash has the wrong namespace"),
         )
       end
 
