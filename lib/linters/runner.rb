@@ -33,7 +33,7 @@ module Linters
       violations = linter_options.tokenizer.parse(result.output)
 
       if violations.empty? && result.error?
-        complete_file_review([], error: result.output)
+        complete_file_review([], error: result.output.lines.uniq.join)
       else
         complete_file_review(violations)
       end
