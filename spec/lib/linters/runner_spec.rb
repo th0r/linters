@@ -8,12 +8,26 @@ describe Linters::Runner do
       it "enqueues a job with an error" do
         config = <<~EOS
           Style/AlignHash:
-          Enabled: true
+            Enabled: true
+          Style/MethodCallParentheses:
+            Enabled: true
+        EOS
+        content = <<~EOS
+          # frozen_string_literal: true
+          {
+            hello: 1,
+            foo: 2
+          }
+        EOS
+        expected_output = <<~EOS
+          .rubocop.yml: Style/AlignHash has the wrong namespace - should be Layout
+          Error: The `Style/MethodCallParentheses` cop has been renamed to `Style/MethodCallWithoutArgsParentheses`.
+          (obsolete configuration found in .rubocop.yml, please update it)
         EOS
         attributes = {
           "commit_sha" => "foobar",
           "config" => config,
-          "content" => "puts 'hello world'",
+          "content" => content,
           "filename" => "foo.rb",
           "linter_name" => "rubocop",
           "patch" => "",
@@ -34,8 +48,7 @@ describe Linters::Runner do
           patch: attributes["patch"],
           pull_request_number: attributes["pull_request_number"],
           violations: [],
-          error:
-            start_with(".rubocop.yml: Style/AlignHash has the wrong namespace"),
+          error: expected_output,
         )
       end
 
